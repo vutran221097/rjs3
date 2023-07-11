@@ -14,6 +14,7 @@ const ShopPage = () => {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
 
   const getData = async () => {
     try {
@@ -78,6 +79,22 @@ const ShopPage = () => {
     navigate(`/detail/${item._id.$oid}`);
   };
 
+  // onchange searching input
+  const onChangeSearch = (e) => {
+    setSearchText(e.target.value);
+    if (active === "All") {
+      const newData = data.filter((item) => item.name.includes(e.target.value));
+      setFilterData(newData);
+    } else {
+      const newData = data.filter(
+        (item) =>
+          item.name.includes(e.target.value) &&
+          active.toLowerCase() === item.category
+      );
+      setFilterData(newData);
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -108,7 +125,12 @@ const ShopPage = () => {
           </div>
           <div className="shop-category-item">
             <div className="shop-filter">
-              <input type="text" placeholder="Enter Search Here!" />
+              <input
+                type="text"
+                placeholder="Enter Search Here!"
+                onChange={onChangeSearch}
+                value={searchText}
+              />
               <select
                 name="sort"
                 id="sort"
