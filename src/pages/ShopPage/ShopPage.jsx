@@ -112,7 +112,7 @@ const ShopPage = () => {
         );
         setFilterData(newData);
       }
-    }, 800);
+    }, 500);
 
     return () => clearTimeout(getData);
     // eslint-disable-next-line
