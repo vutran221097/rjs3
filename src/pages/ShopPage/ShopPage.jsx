@@ -39,6 +39,7 @@ const ShopPage = () => {
   // change category
   const changeCategory = (category) => {
     setActive(category);
+    setSearchText("")
 
     if (category === "All") {
       setFilterData(data);
@@ -86,7 +87,17 @@ const ShopPage = () => {
 
   // debouce searching
   useEffect(() => {
-    if (!searchText.length) return setFilterData(data);
+    if (!searchText.length) {
+      if (active === "All") {
+        setFilterData(data);
+      } else {
+        const newData = data.filter(
+          (item) => item.category === active.toLowerCase()
+        );
+        setFilterData(newData);
+      }
+      return;
+    }
     const getData = setTimeout(() => {
       if (active === "All") {
         const newData = data.filter((item) =>
