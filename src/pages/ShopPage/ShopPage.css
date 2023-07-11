@@ -58,6 +58,10 @@
   width: 40%;
 }
 
+.shop-filter input:focus{
+  outline: none;
+}
+
 .shop-filter select {
   padding: 0.5rem 1rem;
   color: grey;

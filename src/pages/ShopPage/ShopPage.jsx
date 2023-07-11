@@ -82,18 +82,30 @@ const ShopPage = () => {
   // onchange searching input
   const onChangeSearch = (e) => {
     setSearchText(e.target.value);
-    if (active === "All") {
-      const newData = data.filter((item) => item.name.includes(e.target.value));
-      setFilterData(newData);
-    } else {
-      const newData = data.filter(
-        (item) =>
-          item.name.includes(e.target.value) &&
-          active.toLowerCase() === item.category
-      );
-      setFilterData(newData);
-    }
   };
+
+  // debouce searching
+  useEffect(() => {
+    if (!searchText.length) return setFilterData(data);
+    const getData = setTimeout(() => {
+      if (active === "All") {
+        const newData = data.filter((item) =>
+          item.name.toLowerCase().includes(searchText)
+        );
+        setFilterData(newData);
+      } else {
+        const newData = data.filter(
+          (item) =>
+            item.name.toLowerCase().includes(searchText) &&
+            active.toLowerCase() === item.category
+        );
+        setFilterData(newData);
+      }
+    }, 800);
+
+    return () => clearTimeout(getData);
+    // eslint-disable-next-line
+  }, [searchText]);
 
   return (
     <div>
