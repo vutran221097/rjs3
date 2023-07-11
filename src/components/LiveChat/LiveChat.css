@@ -38,6 +38,7 @@
 .live-chat-box-body {
   padding: 0.5rem 6rem 0.5rem 1rem;
   height: 20rem;
+  overflow-x: auto;
 }
 
 .live-chat-box-body .user-chat p {
@@ -88,4 +89,8 @@
 
 .live-chat-icon {
   cursor: pointer;
+}
+
+.live-chat-box-input{
+  white-space: nowrap;
 }

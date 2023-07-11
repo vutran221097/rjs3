@@ -48,7 +48,7 @@ const LiveChat = () => {
           </div>
           <div className="horizon-line"></div>
           <div className="live-chat-box-footer">
-            <div>
+            <div className="live-chat-box-input"> 
               <FontAwesomeIcon icon={faUser} />
               &nbsp; &nbsp;
               <input type="text" placeholder="Enter Message!" />
